@@ -118,13 +118,14 @@ from app.db.session import SessionLocal as db_session
 from app.models.conversation import Conversation
 
 def get_all_conversations():
-    conversations = db_session.query(Conversation).all()
+    db: Session = next(get_db())
+    conversations = db.query(Conversation).all()
     return [
         {
             "conversation_id": conv.id,
             "user_id": conv.user_id,
-            "created_at": conv.created_at,
-            "updated_at": conv.updated_at
+            #"created_at": conv.created_at,
+            #"updated_at": conv.updated_at
         }
         for conv in conversations
     ]

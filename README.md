@@ -168,6 +168,182 @@ Submit tone feedback for memory training.
 ```
 
 
+
+## Sample Test
+
+## ✅ 1. POST /api/chats
+
+REQUEST
+```json
+POST /api/chats
+
+{
+  "user_id": "user123",
+  "user_input": "Hey, I need help writing a professional email.",
+  "conversation_id": "",
+  "feedback_on_previous": "positive"
+}
+```
+
+RESPONSE
+```json
+
+{
+    "conversation_id": "36795b4a-baaf-4654-a734-12f025a4b75d",
+    "memory_updated": true,
+    "response": "What's the email about and who's it to? That'll help me give you a better template.",
+    "tone_applied": {
+        "empathy_level": "low",
+        "enthusiasm": "low",
+        "formality": "casual",
+        "humor": "none",
+        "verbosity": "concise"
+    }
+}
+
+```
+
+
+## ✅ 2. GET /api/chats
+
+REQUEST
+```json
+GET /api/chats
+```
+RESPONSE
+```json
+
+{
+    "conversations": [
+        {
+            "conversation_id": "e8020d78-5aa5-4e46-b844-9669aa12bc79",
+            "user_id": "user123"
+        },
+        {
+            "conversation_id": "ad7c3c54-2e58-44cc-af2e-87f04271f111",
+            "user_id": "user1234"
+        }
+    ]
+}
+
+```
+
+## ✅ 3. GET /api/chats/{chat_id}
+
+REQUEST
+```json
+GET /api/chats/chat_id
+```
+RESPONSE
+```json
+{
+    "conversation_id": "e8020d78-5aa5-4e46-b844-9669aa12bc79",
+    "messages": [
+        {
+            "id": "c5b47778-7de6-4b1e-9013-8125935af05e",
+            "sender": "user",
+            "text": "Hey, I need help writing a professional email.",
+            "timestamp": "2025-08-06T17:49:46.015107",
+            "tone_feedback": "{\"formality\": \"casual\", \"enthusiasm\": \"low\", \"verbosity\": \"concise\", \"empathy_level\": \"low\", \"humor\": \"none\"}"
+        },
+        {
+            "id": "1643c4ff-275d-4a1e-896e-1de98c77956e",
+            "sender": "assistant",
+            "text": "To write a good email, I'll need some more info. Can you tell me:\n\n1. What's the email about?\n2. Who is the email to (e.g. coworker, manager, client)?\n3. What's the purpose of the email (e.g. request, update, question)?\n4. Are there any specific details or attachments you need to include?\n\nOnce I have this info, I can help you create a template.",
+            "timestamp": "2025-08-06T17:49:46.053525",
+            "tone_feedback": null
+        }
+    ]
+}
+
+```
+
+
+## ✅ 4. POST /api/users
+
+REQUEST
+```json
+POST /api/users
+
+{
+  "user_id": "user123456",
+  "name": "Jane",
+  "email": "jane@example.com",
+  "location": "NYC",
+  "tone_preferences": {
+    "formality": "casual",
+    "enthusiasm": "low"
+  },
+  "communication_style": "empathetic"
+}
+
+```
+
+RESPONSE
+```json
+{
+    "message": "User created or updated successfully",
+    "user_id": "user_123456"
+}
+
+```
+
+## ✅ 5. GET /api/users/{user_id}
+
+REQUEST
+```json
+GET /api/users/user_id
+```
+RESPONSE
+```json
+{
+    "communication_style": {
+        "verbose": true
+    },
+    "email": "john@example.com",
+    "interaction_history": {},
+    "location": "New York",
+    "name": "John Doe",
+    "tone_preferences": {
+        "default": "friendly"
+    },
+    "user_id": "user_123456"
+}
+```
+
+## ✅ 6. GET /api/memory/{user_id}
+
+REQUEST
+```json
+GET /api/memory/user_id
+```
+RESPONSE
+```json
+{
+    "communication_style": {
+        "verbose": true
+    },
+    "interaction_history": {},
+    "tone_preferences": {
+        "default": "friendly"
+    }
+}
+```
+
+## ✅ 7. DELETE /api/memory/{user_id}
+
+REQUEST
+```json
+DELETE /api/memory/user_id
+```
+RESPONSE
+```json
+{
+  "message": "Memory cleared successfully"
+}
+```
+
+
 ### 💬 Frontend Features (Streamlit)
 🔐 User authentication (via user_id)
 
