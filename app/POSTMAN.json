@@ -1,0 +1,68 @@
+{
+  "info": {
+    "_postman_id": "tone-adaptive-chat-api",
+    "name": "Tone Adaptive Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create or Respond to Chat",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:5000/api/chats", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "chats"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user_123\",\n  \"user_input\": \"Hi there, how are you?\",\n  \"tone_feedback\": \"friendly\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Conversation History",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/chats/{{conversation_id}}", "host": ["localhost"], "port": "5000", "path": ["api", "chats", "{{conversation_id}}"] }
+      }
+    },
+    {
+      "name": "List All Conversations",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/chats", "host": ["localhost"], "port": "5000", "path": ["api", "chats"] }
+      }
+    },
+    {
+      "name": "Create or Update User",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:5000/api/users", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "users"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"user_123\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"avatar_url\": \"https://example.com/avatar.jpg\",\n  \"location\": \"New York\",\n  \"tone_preferences\": { \"default\": \"formal\" },\n  \"communication_style\": { \"verbose\": true },\n  \"interaction_history\": {}\n}"
+        }
+      }
+    },
+    {
+      "name": "Get User Info",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/users/user_123", "host": ["localhost"], "port": "5000", "path": ["api", "users", "user_123"] }
+      }
+    },
+    {
+      "name": "Get User Memory",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/api/memory/user_123", "host": ["localhost"], "port": "5000", "path": ["api", "memory", "user_123"] }
+      }
+    },
+    {
+      "name": "Clear User Memory",
+      "request": {
+        "method": "DELETE",
+        "url": { "raw": "http://localhost:5000/api/memory/user_123", "host": ["localhost"], "port": "5000", "path": ["api", "memory", "user_123"] }
+      }
+    }
+  ]
+}
